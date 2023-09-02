@@ -1,12 +1,13 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: config-cm
-data:
-  config_url: "http://config-server-svc"
-
----
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: ${EUREKA_SERVER_ADDRESS:http://localhost:8761/eureka}
+      
 
 spring:
   zipkin:
-    baseUrl: http:zipkin-svc:9411
+    baseUrl: http://zipkin-svc:9411
